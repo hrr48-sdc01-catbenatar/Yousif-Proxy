@@ -11,9 +11,14 @@ app.get('/info', (req, res, next) => {
   res.send('This is a proxy service which proxies to the 4 services present in the Team 2 FEC project.');
 });
 
-app.get('/*', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
-});
+// app.get('/*', (req, res) => {
+//   res.sendFile(__dirname + '/index.html');
+// });
+
+app.get('/products/id/:id', (req, res) => {
+  var newId = req.params.id;
+  axios.get(`http://3.139.9.29:3003/products/id/${newId}`).then(response => res.send(response.data)).catch(err => console.error(err))
+})
 
 app.post('/api/products', (req, res) => {
   var info = req.body
