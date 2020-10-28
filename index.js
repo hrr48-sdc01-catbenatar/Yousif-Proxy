@@ -17,7 +17,7 @@ app.get('/info', (req, res, next) => {
 
 app.get('/products/id/:id', (req, res) => {
   var newId = req.params.id;
-  axios.get(`http://3.139.9.29:3003/products/id/${newId}`).then(response => res.send(response.data)).catch(err => console.error(err))
+  axios.get(`http://3.139.9.29:3003/products/id/${newId}`).catch(err => console.error(err)).then(response => res.send(response.data))
 })
 
 app.post('/api/products', (req, res) => {
